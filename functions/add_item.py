@@ -6,9 +6,10 @@ from uuid import uuid4
 from ValidateBook import ValidateBook
 import json
 
-vd = ValidateBook()
 
 def addItem():
+    vd = ValidateBook()
+    
     print("\n===== Adicionar novo livro =====\n")
 
     new_item = {
@@ -34,4 +35,4 @@ def addItem():
     with open("items.json", "w") as arq:
         arq.write(json.dumps(items_json))
     
-    print("\n===== Livro adicionado! =====\n")
+    print(f"\n -> Livro adicionado!\n  - ID do novo livro: {new_item["id"]}")

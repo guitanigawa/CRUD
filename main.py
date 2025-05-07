@@ -4,23 +4,61 @@ sys.path.append(os.path.join(os.path.dirname(__file__), 'functions'))
 
 from add_item import addItem
 from update_item import updateItem
+from show_items import showItems
+from delete_item import deleteItem
 import json
 
-
 while True:
-    print("===== CRUD Biblioteca =====\n")
+    print("\n===== CRUD Biblioteca =====\n")
     
-    option = input("Escolha uma opção:\n -> 1) Adicionar item\n -> 2) Atualizar item\n -> 3) Sair\n")
+    option = input("Escolha uma opção (número):\n -> 1) Adicionar item\n -> 2) Atualizar item\n -> 3) Mostrar itens\n -> 4) Deletar item\n -> 5) Sair\n").strip()
 
     match option:
         case "1":
             addItem()
+        
         case "2":
-            id_ = input("Insira o ID do item que deseja atualizar: ")
+            print("\n===== Atualizar item =====\n")
+            
+            with open("items.json", "r") as arq:
+                try:
+                    list_items = json.loads(arq.read())["items"]
+                    if list_items == []:
+                        print("\n -> Ainda não há itens na lista!")
+                        continue
+                except:
+                    print("\n -> Ainda não há itens na lista")
+                    continue
+
+            for item in list_items:
+                print(f" - Título: {item["title"]} | ID: {item["id"]}")
+
+            id_ = input("\nInsira o ID do item que deseja atualizar: ")
 
             updateItem(id_)
+        
         case "3":
+            showItems()
+        
+        case "4":
+            print("\n===== Atualizar item =====\n")
+
+            with open("items.json", "r") as arq:
+                try:
+                    list_items = json.loads(arq.read())["items"]
+                    if list_items == []:
+                        print("\n -> Ainda não há itens na lista!")
+                        continue
+                except:
+                    print("\n -> Ainda não há itens na lista")
+                    continue
+
+            id_ = input("Insira o ID do item que deseja deletar: ")
+
+            deleteItem(id_)
+        case "5":
+            print(" -> Até mais!")
             break
         case _:
-            print("Opção inválida. Programa reiniciando: ")
+            print("\n -> Opção inválida. Programa reiniciando: ")
             continue
