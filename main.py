@@ -11,14 +11,13 @@ import json
 while True:
     print("\n===== CRUD Biblioteca =====\n")
     
-    option = input("Escolha uma opção (número):\n -> 1) Adicionar item\n -> 2) Atualizar item\n -> 3) Mostrar itens\n -> 4) Deletar item\n -> 5) Sair\n").strip()
+    option = input("Escolha uma opção (número):\n -> 1) Adicionar livro\n -> 2) Atualizar livro\n -> 3) Mostrar livro\n -> 4) Deletar livro\n -> 5) Sair\n").strip()
 
     match option:
         case "1":
             addItem()
         
         case "2":
-            print("\n===== Atualizar item =====\n")
             
             with open("items.json", "r") as arq:
                 try:
@@ -27,8 +26,10 @@ while True:
                         print("\n -> Ainda não há itens na lista!")
                         continue
                 except:
-                    print("\n -> Ainda não há itens na lista")
+                    print("\n -> Ainda não há itens na lista!")
                     continue
+
+            print("\n===== Atualizar livro =====\n")
 
             for item in list_items:
                 print(f" - Título: {item["title"]} | ID: {item["id"]}")
@@ -41,8 +42,6 @@ while True:
             showItems()
         
         case "4":
-            print("\n===== Atualizar item =====\n")
-
             with open("items.json", "r") as arq:
                 try:
                     list_items = json.loads(arq.read())["items"]
@@ -50,10 +49,15 @@ while True:
                         print("\n -> Ainda não há itens na lista!")
                         continue
                 except:
-                    print("\n -> Ainda não há itens na lista")
+                    print("\n -> Ainda não há itens na lista!")
                     continue
 
-            id_ = input("Insira o ID do item que deseja deletar: ")
+            print("\n===== Deletar livro =====\n")
+
+            for item in list_items:
+                print(f" - Título: {item["title"]} | ID: {item["id"]}")
+
+            id_ = input("\nInsira o ID do item que deseja deletar: ")
 
             deleteItem(id_)
         case "5":

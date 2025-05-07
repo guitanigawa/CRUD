@@ -6,7 +6,6 @@ import json
 
 class ValidateBook():
     
-    
     def arqs(self):
         with open("genders.json", "r", encoding="utf-8") as arq:
             self.genders_list = json.loads(arq.read())["genders"]

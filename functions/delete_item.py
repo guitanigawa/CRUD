@@ -26,4 +26,4 @@ def deleteItem(item_id):
     with open("items.json", "w") as arq:
         arq.write(json.dumps(items_json))
 
-    print("\n -> Item excluído! ")
+    print("\n -> Item deletado! ")

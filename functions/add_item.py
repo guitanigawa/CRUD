@@ -10,7 +10,7 @@ import json
 def addItem():
     vd = ValidateBook()
     
-    print("\n===== Adicionar novo livro =====\n")
+    print("\n===== Adicionar livro =====\n")
 
     new_item = {
         "id": str(uuid4()),

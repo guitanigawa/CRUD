@@ -29,15 +29,15 @@ def updateItem(item_id):
         if new_item["id"] == vd_id:
             match attr_to_change:
                 case "T":
-                    new_item["title"] = input(f"Insira um novo título [Antigo: {item["title"]}]: ")
+                    new_item["title"] = input(f"Insira um novo título [Antigo: '{item["title"]}']: ")
                 case "A":
-                    new_item["author"] = vd.author(input(f"Insira o novo autor [Antigo: {item["author"]}]: "))
+                    new_item["author"] = vd.author(input(f"Insira o novo autor [Antigo: '{item["author"]}']: "))
                 case "Y":
-                    new_item["year"] = vd.year(input(f"Insira um novo ano [Antigo: {item["year"]}]: "))
+                    new_item["year"] = vd.year(input(f"Insira um novo ano [Antigo: '{item["year"]}']: "))
                 case "G":
-                    new_item["gender"] = vd.gender(input(f"Insira um novo gênero [Antigo: {item["gender"]}]: "))
+                    new_item["gender"] = vd.gender(input(f"Insira um novo gênero [Antigo: '{item["gender"]}']: "))
                 case "NP":
-                    new_item["n_pages"] = vd.n_pages(input(f"Insira um novo N de páginas [Antigo: {item["n_pages"]}]: "))
+                    new_item["n_pages"] = vd.n_pages(input(f"Insira um novo N de páginas [Antigo: '{item["n_pages"]}']: "))
         
         return new_item
 
