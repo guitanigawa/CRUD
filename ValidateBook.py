@@ -1,14 +1,49 @@
-from uuid import uuid4
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), './'))
+
+import json
 
 class ValidateBook():
-    with open("genders.txt", "r") as arq:
-        genders_list = arq.read().split(", ")
-    attrs_list = ["title", "author", "year", "gender", "n_pages"]
+    with open("genders.json", "r", encoding="utf-8") as arq:
+        genders_list = json.loads(arq.read())["genders"]
+    
+    with open("items.json", "r") as arq:
+        try:
+            items_list = json.loads(arq.read())["items"]
+        except:
+            items_list = {"items": []}
+    
+    attrs_list = ["T", "A", "Y", "G", "NP"]
+    
+    def id_(self, value):
+        id_ = value.strip()
+
+        ids_list = []
+        for item in ValidateBook.items_list:
+            if item["id"].casefold() == id_.casefold(): return id_
+            ids_list.append(item["id"].casefold())
+        
+        while not id_ in ids_list:
+            id_ = input("ID inválido. Tente novamente: ").strip()
+
+    
+    def title(self, value):
+        title = value.strip()
+    
+        for item in ValidateBook.items_list:
+            if item["title"].casefold() == title.casefold():
+                while item["title"].casefold() == title.casefold():
+                    title = input("Título inválido. Tente novamente: ").strip()
+                return title
+
+        return title
+
 
     def author(self, value):
         author = value.strip()
         while True:
-            if author.isalpha(): return gender
+            if author.isalpha(): return author
             author = input("Autor inválido. Tente novamente: ").strip()
 
     def year(self, value):
@@ -30,7 +65,7 @@ class ValidateBook():
     def gender(self, value):
         gender = value.strip()
         while True:
-            if gender in genders_list: return gender
+            if gender in ValidateBook.genders_list: return gender
             gender = input("Gênero inválido. Tente novamente: ").strip()
     
     def n_pages(self, value):
@@ -54,24 +89,4 @@ class ValidateBook():
         while True:
             if attr in attrs_list: return attr
             attr = input("Atributo inválido. Tente novamente: ").strip()
-
-class Livro():
-    def __init__(self, title, author, year, gender, num_pgs):
-        self.id = str(uuid4())
-        self.title = title
-        self.author = author
-        self.year = year
-        self.gender = gender
-        self.n_pages = n_pages
-
-    def update(self, attr, new_value):
-        s_new_value = new_value.strip()
-
-        if attr == "title": 
-            setattr(self, attr, s_new_value)
-        else:
-            vd = getattr(ValidationBook, attr)
-
-            setattr(self, attr, vd(s_new_value))
-
     
