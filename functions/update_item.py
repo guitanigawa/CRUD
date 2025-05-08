@@ -11,13 +11,7 @@ def updateItem(item_id):
     vd_id = vd.id_(item_id)
 
     with open("items.json", "r") as arq:
-        try:
-            items_json = json.loads(arq.read())
-        except:
-            print("\n -> Ainda não há items na lista!")
-            return
-
-    
+        items_json = json.loads(arq.read())
 
     items_list = items_json["items"]
 

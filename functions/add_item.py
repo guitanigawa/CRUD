@@ -27,8 +27,8 @@ def addItem():
             items_json = json.loads(arq.read())
         except:
             items_json = {"items": []}
-        items_list = items_json["items"]
-    
+
+    items_list = items_json["items"]
     items_list.append(new_item)
     items_json["items"] = items_list
 

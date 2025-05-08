@@ -10,15 +10,9 @@ def showItems():
     vd = ValidateBook()
     
     with open("items.json", "r") as arq:
-        try:
-            list_items = json.loads(arq.read())["items"]
-            if list_items == []:
-                print("\n -> Ainda não há itens na lista!")
-                return
-        except:
-            print("\n -> Ainda não há itens na lista!")
-            return
+        list_items = json.loads(arq.read())["items"]
 
+    
     print("\n===== Itens da Lista =====\n")
 
     for item in list_items:
