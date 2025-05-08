@@ -19,7 +19,7 @@ def updateItem(item_id):
     def changeItem(item):
         new_item = item
 
-        if new_item["id"] == vd_id:
+        if new_item["id"] == item_id:
             match attr_to_change:
                 case "T":
                     new_item["title"] = input(f"Insira um novo título [Antigo: '{item["title"]}']: ")

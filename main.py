@@ -13,6 +13,8 @@ from show_items import showItems
 from delete_item import deleteItem
 
 while True:
+    
+
     vd = ValidateBook()
 
     print("\n===== CRUD Biblioteca =====\n")
@@ -40,7 +42,7 @@ while True:
                 "author": vd.author(input("Insira o autor do livro: ")),
                 "year": vd.year(input("Insira o ano do livro: ")),
                 "gender": vd.gender(input("Insira o gênero do livro: ")),
-                "quantity": vd.quantity(input("Insira o número de páginas: "))
+                "quantity": vd.quantity(input("Insira a quantidade: "))
             }   
 
             addItem(new_item)

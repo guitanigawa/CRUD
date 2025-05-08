@@ -8,7 +8,7 @@ def deleteItem(item_id):
     items_list = items_json["items"]
         
     for item in items_list:
-        if item["id"] == vd_id: items_list.remove(item)
+        if item["id"] == item_id: items_list.remove(item)
 
     items_json["items"] = items_list
 

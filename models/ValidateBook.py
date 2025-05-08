@@ -46,8 +46,9 @@ class ValidateBook():
 
     def author(self, value):
         author = value.strip()
+        
         while True:
-            if author.isalpha(): return author.capitalize()
+            if author.replace(" ", "").isalpha(): return author.capitalize()
             author = input(" -> Autor inválido. Tente novamente: ").strip()
 
     def year(self, value):
