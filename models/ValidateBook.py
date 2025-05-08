@@ -72,19 +72,19 @@ class ValidateBook():
             if gender.lower() in self.genders_list: return gender.capitalize()
             gender = input(" -> Gênero inválido. Tente novamente: ").strip()
     
-    def n_pages(self, value):
+    def quantity(self, value):
         try:
-            n_pages = int(value)
+            quantity = int(value)
             
-            if 0 < n_pages:
-                 return n_pages
+            if 0 < quantity:
+                 return quantity
             else: 
                 raise Exception 
         except:
             while True:
                 try:
-                    n_pages = int(input(" -> Número inválido. Tente novamente: "))
-                    if 0 < n_pages: return n_pages
+                    quantity = int(input(" -> Quantidade inválida. Tente novamente: "))
+                    if 0 < quantity: return quantity
                 except:
                     continue
 

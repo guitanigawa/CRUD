@@ -15,8 +15,8 @@ def showItems():
                     print(f" -> Ano: {v}")
                 case "gender":
                     print(f" -> Gênero: {v}")
-                case "n_pages":
-                    print(f" -> N Páginas: {v}")
+                case "quantitys":
+                    print(f" -> Quantidade: {v}")
                 case _:
                     print(f" -> {k}: {v}")
 

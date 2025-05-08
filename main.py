@@ -40,7 +40,7 @@ while True:
                 "author": vd.author(input("Insira o autor do livro: ")),
                 "year": vd.year(input("Insira o ano do livro: ")),
                 "gender": vd.gender(input("Insira o gênero do livro: ")),
-                "n_pages": vd.n_pages(input("Insira o número de páginas: "))
+                "quantity": vd.quantity(input("Insira o número de páginas: "))
             }   
 
             addItem(new_item)

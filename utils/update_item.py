@@ -30,7 +30,7 @@ def updateItem(item_id):
                 case "G":
                     new_item["gender"] = vd.gender(input(f"Insira um novo gênero [Antigo: '{item["gender"]}']: "))
                 case "NP":
-                    new_item["n_pages"] = vd.n_pages(input(f"Insira um novo N de páginas [Antigo: '{item["n_pages"]}']: "))
+                    new_item["quantity"] = vd.quantity(input(f"Insira a nova quantidade [Antigo: '{item["quantity"]}']: "))
         
         return new_item
 
