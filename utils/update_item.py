@@ -1,17 +1,17 @@
 import sys
-import os 
-sys.path.append(os.path.join(os.path.dirname(__file__), '../'))
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "models"))
 
 from ValidateBook import ValidateBook
 import json
-
 
 def updateItem(item_id):
     vd = ValidateBook()
     vd_id = vd.id_(item_id)
 
-    with open("items.json", "r") as arq:
+    with open("./data/items.json", "r") as arq:
         items_json = json.loads(arq.read())
+
 
     items_list = items_json["items"]
 
@@ -38,7 +38,7 @@ def updateItem(item_id):
     new_items_list = list(map(changeItem, items_list))
     items_json["items"] = new_items_list
     
-    with open("items.json", "w") as arq:
+    with open("./data/items.json", "w") as arq:
         arq.write(json.dumps(items_json))
 
     print("\n -> Item atualizado!")

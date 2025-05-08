@@ -1,16 +1,12 @@
-import sys
-import os
-sys.path.append(os.path.join(os.path.dirname(__file__), './'))
-
 import json
 
 class ValidateBook():
     
     def arqs(self):
-        with open("genders.json", "r", encoding="utf-8") as arq:
+        with open("./data/genders.json", "r") as arq:
             self.genders_list = json.loads(arq.read())["genders"]
         
-        with open("items.json", "r") as arq:
+        with open("./data/items.json", "r") as arq:
             try:
                 self.items_list = json.loads(arq.read())["items"]
             except:
@@ -20,11 +16,10 @@ class ValidateBook():
     def __init__(self):
         self.arqs()
     
-    
     attrs_vd = ["T", "A", "Y", "G", "NP"]
     
     
-    
+
     def id_(self, value):
         id_ = value.strip()
 

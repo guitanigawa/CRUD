@@ -1,15 +1,14 @@
 import sys
-import os 
-sys.path.append(os.path.join(os.path.dirname(__file__), '../'))
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "models"))
 
 from ValidateBook import ValidateBook
 import json
 
-
 def showItems():
     vd = ValidateBook()
     
-    with open("items.json", "r") as arq:
+    with open("./data/items.json", "r") as arq:
         list_items = json.loads(arq.read())["items"]
 
     

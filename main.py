@@ -1,6 +1,6 @@
 import sys
 import os
-sys.path.append(os.path.join(os.path.dirname(__file__), 'functions'))
+sys.path.append(os.path.join(os.path.dirname(__file__), 'utils'))
 
 from add_item import addItem
 from update_item import updateItem
@@ -11,10 +11,10 @@ import json
 while True:
     print("\n===== CRUD Biblioteca =====\n")
     
-    option = input("Escolha uma opção (número):\n -> 1) Adicionar livro\n -> 2) Atualizar livro\n -> 3) Mostrar livro\n -> 4) Deletar livro\n -> 5) Sair\n").strip()
+    option = input("Escolha uma opção (número):\n -> 1) Adicionar livro\n -> 2) Atualizar livro\n -> 3) Mostrar livros\n -> 4) Deletar livro\n -> 5) Sair\n").strip()
 
     if option in [str(x) for x in range(2, 5)]:
-        with open("items.json", "r") as arq:
+        with open("./data/items.json", "r") as arq:
             try:
                 list_items = json.loads(arq.read())["items"]
                 if list_items == []:
@@ -51,7 +51,7 @@ while True:
 
             deleteItem(id_)
         case "5":
-            print(" -> Até mais!")
+            print("\n -> Até mais!")
             break
         case _:
             print("\n -> Opção inválida. Programa reiniciando: ")
