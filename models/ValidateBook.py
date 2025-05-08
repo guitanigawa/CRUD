@@ -18,7 +18,6 @@ class ValidateBook():
     
     attrs_vd = ["T", "A", "Y", "G", "NP"]
     
-    
 
     def id_(self, value):
         id_ = value.strip()

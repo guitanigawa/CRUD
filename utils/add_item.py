@@ -1,26 +1,6 @@
-import sys
-import os
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", "models"))
-
-from uuid import uuid4
-from ValidateBook import ValidateBook
 import json
 
-def addItem():
-    vd = ValidateBook()
-    
-    print("\n===== Adicionar livro =====\n")
-
-    new_item = {
-        "id": str(uuid4()),
-        "title": vd.title(input("Insira o título do livro: ")),
-        "author": vd.author(input("Insira o autor do livro: ")),
-        "year": vd.year(input("Insira o ano do livro: ")),
-        "gender": vd.gender(input("Insira o gênero do livro: ")),
-        "n_pages": vd.n_pages(input("Insira o número de páginas: "))
-    }
-
-
+def addItem(new_item):
     with open("./data/items.json", "r") as arq:
         try:
             items_json = json.loads(arq.read())
@@ -33,5 +13,4 @@ def addItem():
 
     with open("./data/items.json", "w") as arq:
         arq.write(json.dumps(items_json))
-    
-    print(f"\n -> Livro adicionado!\n  - ID do novo livro: {new_item["id"]}")
+

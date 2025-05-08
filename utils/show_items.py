@@ -1,20 +1,10 @@
-import sys
-import os
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", "models"))
-
-from ValidateBook import ValidateBook
 import json
 
 def showItems():
-    vd = ValidateBook()
-    
     with open("./data/items.json", "r") as arq:
-        list_items = json.loads(arq.read())["items"]
+        items_list = json.loads(arq.read())["items"]
 
-    
-    print("\n===== Itens da Lista =====\n")
-
-    for item in list_items:
+    for item in items_list:
         for k, v in item.items():
             match k:
                 case "title":
@@ -30,6 +20,6 @@ def showItems():
                 case _:
                     print(f" -> {k}: {v}")
 
-        if not list_items.index(item) == len(list_items) - 1:
+        if not items_list.index(item) == len(items_list) - 1:
             print("\n---------------------------------\n")
      

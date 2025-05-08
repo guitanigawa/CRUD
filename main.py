@@ -1,14 +1,20 @@
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), 'utils'))
+sys.path.append(os.path.join(os.path.dirname(__file__), 'models'))
+
+from ValidateBook import ValidateBook
+import json
+from uuid import uuid4
 
 from add_item import addItem
 from update_item import updateItem
 from show_items import showItems
 from delete_item import deleteItem
-import json
 
 while True:
+    vd = ValidateBook()
+
     print("\n===== CRUD Biblioteca =====\n")
     
     option = input("Escolha uma opção (número):\n -> 1) Adicionar livro\n -> 2) Atualizar livro\n -> 3) Mostrar livros\n -> 4) Deletar livro\n -> 5) Sair\n").strip()
@@ -26,7 +32,21 @@ while True:
 
     match option:
         case "1":
-            addItem()
+            print("\n===== Adicionar livro =====\n")
+            
+            new_item = {
+                "id": str(uuid4()),
+                "title": vd.title(input("Insira o título do livro: ")),
+                "author": vd.author(input("Insira o autor do livro: ")),
+                "year": vd.year(input("Insira o ano do livro: ")),
+                "gender": vd.gender(input("Insira o gênero do livro: ")),
+                "n_pages": vd.n_pages(input("Insira o número de páginas: "))
+            }   
+
+            addItem(new_item)
+
+            print(f"\n -> Livro adicionado!\n  - ID do novo livro: {new_item["id"]}")
+        
         
         case "2":
             print("\n===== Atualizar livro =====\n")
@@ -34,12 +54,17 @@ while True:
             for item in list_items:
                 print(f" - Título: {item["title"]} | ID: {item["id"]}")
 
-            id_ = input("\nInsira o ID do item que deseja atualizar: ")
-
+            id_ = vd.id_(input("\nInsira o ID do item que deseja atualizar: "))
             updateItem(id_)
+
+            print("\n -> Item atualizado!")
+        
         
         case "3":
+            print("\n===== Livros da biblioteca =====\n")
+
             showItems()
+        
         
         case "4":
             print("\n===== Deletar livro =====\n")
@@ -47,12 +72,17 @@ while True:
             for item in list_items:
                 print(f" - Título: {item["title"]} | ID: {item["id"]}")
 
-            id_ = input("\nInsira o ID do item que deseja deletar: ")
-
+            id_ = vd.id_(input("\nInsira o ID do item que deseja deletar: "))
             deleteItem(id_)
+        
+            print("\n -> Item deletado! ")
+        
+        
         case "5":
             print("\n -> Até mais!")
             break
+        
+        
         case _:
             print("\n -> Opção inválida. Programa reiniciando: ")
             continue

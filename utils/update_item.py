@@ -7,14 +7,13 @@ import json
 
 def updateItem(item_id):
     vd = ValidateBook()
-    vd_id = vd.id_(item_id)
 
     with open("./data/items.json", "r") as arq:
         items_json = json.loads(arq.read())
 
 
     items_list = items_json["items"]
-
+    
     attr_to_change = vd.attr(input("Escolha o atributo a ser alterado [T/A/Y/G/NP]: "))
 
     def changeItem(item):
@@ -41,4 +40,3 @@ def updateItem(item_id):
     with open("./data/items.json", "w") as arq:
         arq.write(json.dumps(items_json))
 
-    print("\n -> Item atualizado!")
