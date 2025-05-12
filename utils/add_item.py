@@ -14,3 +14,4 @@ def addItem(new_item):
     with open("./data/items.json", "w") as arq:
         arq.write(json.dumps(items_json))
 
+    return

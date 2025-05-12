@@ -14,24 +14,14 @@ def updateItem(item_id):
 
     items_list = items_json["items"]
     
-    attr_to_change = vd.attr(input("Escolha o atributo a ser alterado [T/A/Y/G/NP]: "))
+    attr_to_change = vd.attr(input("Escolha o atributo a ser alterado [T/A/Y/G/Q]: "))
 
     def changeItem(item):
         new_item = item
 
         if new_item["id"] == item_id:
-            match attr_to_change:
-                case "T":
-                    new_item["title"] = input(f"Insira um novo título [Antigo: '{item["title"]}']: ")
-                case "A":
-                    new_item["author"] = vd.author(input(f"Insira o novo autor [Antigo: '{item["author"]}']: "))
-                case "Y":
-                    new_item["year"] = vd.year(input(f"Insira um novo ano [Antigo: '{item["year"]}']: "))
-                case "G":
-                    new_item["gender"] = vd.gender(input(f"Insira um novo gênero [Antigo: '{item["gender"]}']: "))
-                case "NP":
-                    new_item["quantity"] = vd.quantity(input(f"Insira a nova quantidade [Antigo: '{item["quantity"]}']: "))
-        
+            new_item[attr_to_change] = eval(f"""vd.{attr_to_change}(input(f'Insira o novo valor do atributo [Antigo: "{item[attr_to_change]}"']: ))""")
+
         return new_item
 
     new_items_list = list(map(changeItem, items_list))
@@ -39,4 +29,6 @@ def updateItem(item_id):
     
     with open("./data/items.json", "w") as arq:
         arq.write(json.dumps(items_json))
+
+    return
 

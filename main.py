@@ -11,15 +11,14 @@ from add_item import addItem
 from update_item import updateItem
 from show_items import showItems
 from delete_item import deleteItem
+from filter_items import filterItems
 
 while True:
-    
-
     vd = ValidateBook()
 
     print("\n===== CRUD Biblioteca =====\n")
     
-    option = input("Escolha uma opção (número):\n -> 1) Adicionar livro\n -> 2) Atualizar livro\n -> 3) Mostrar livros\n -> 4) Deletar livro\n -> 5) Sair\n").strip()
+    option = input("Escolha uma opção (número):\n -> 1) Adicionar livro\n -> 2) Atualizar livro\n -> 3) Deletar livro\n -> 4) Mostrar livros\n -> 5) Filtrar livros\n -> 6) Sair\n").strip()
 
     if option in [str(x) for x in range(2, 5)]:
         with open("./data/items.json", "r") as arq:
@@ -59,16 +58,10 @@ while True:
             id_ = vd.id_(input("\nInsira o ID do item que deseja atualizar: "))
             updateItem(id_)
 
-            print("\n -> Item atualizado!")
+            print("\n -> Livro atualizado!")
         
         
         case "3":
-            print("\n===== Livros da biblioteca =====\n")
-
-            showItems()
-        
-        
-        case "4":
             print("\n===== Deletar livro =====\n")
 
             for item in list_items:
@@ -77,13 +70,46 @@ while True:
             id_ = vd.id_(input("\nInsira o ID do item que deseja deletar: "))
             deleteItem(id_)
         
-            print("\n -> Item deletado! ")
+            print("\n -> Livro deletado! ")
         
-        
+        case "4":
+            print("\n===== Livros da biblioteca =====\n")
+
+            showItems()
+            
         case "5":
+            print("\n===== Filtrar livros =====\n")
+
+            attrs_arr = []
+            values_arr = []
+
+            while True:
+                attr = input("Insira o atributo a ser filtrado [T/A/Y/G/Q] (Enter para parar): ")
+                if attr == "": break
+                attr = vd.attr(attr)
+                
+                while attr in attrs_arr:
+                    attr = vd.attr(input(" -> Atributo já incluído. Tente outro: "))
+
+                if attr == "title":
+                    value = input("Insira o valor do atributo: ").strip().title()
+
+                    attrs_arr.append(attr)
+                    values_arr.append(value)
+
+                    break
+                else:
+                    value = eval(f"vd.{attr}(input('Insira o valor do atributo: '))")
+    
+                attrs_arr.append(attr)
+                values_arr.append(value)
+
+                if len(attrs_arr) == 5: break
+
+            filterItems(list(zip(attrs_arr, values_arr)))
+        case "6":
             print("\n -> Até mais!")
             break
-        
         
         case _:
             print("\n -> Opção inválida. Programa reiniciando: ")

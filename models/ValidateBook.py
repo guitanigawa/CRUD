@@ -16,7 +16,7 @@ class ValidateBook():
     def __init__(self):
         self.arqs()
     
-    attrs_vd = ["T", "A", "Y", "G", "NP"]
+    attrs_list = list(zip(["T", "A", "Y", "G", "Q"], ["title", "author", "year", "gender", "quantity"]))
     
 
     def id_(self, value):
@@ -40,15 +40,15 @@ class ValidateBook():
                 if item["title"].casefold() == title.casefold() or title == "":
                     while item["title"].casefold() == title.casefold() or title == "":
                         title = input(" -> Título inválido. Tente novamente: ").strip()
-                    return title.capitalize()
-        return title.capitalize()
+                    return title.title()
+        return title.title()
 
 
     def author(self, value):
         author = value.strip()
         
         while True:
-            if author.replace(" ", "").isalpha(): return author.capitalize()
+            if author.replace(" ", "").isalpha(): return author.title()
             author = input(" -> Autor inválido. Tente novamente: ").strip()
 
     def year(self, value):
@@ -70,7 +70,7 @@ class ValidateBook():
     def gender(self, value):
         gender = value.strip()
         while True:
-            if gender.lower() in self.genders_list: return gender.capitalize()
+            if gender.lower() in self.genders_list: return gender.title()
             gender = input(" -> Gênero inválido. Tente novamente: ").strip()
     
     def quantity(self, value):
@@ -91,7 +91,11 @@ class ValidateBook():
 
     def attr(self, value):
         attr = value.strip()
+
+
         while True:
-            if attr in self.attrs_vd: return attr
+            for abrev, longr in self.attrs_list:
+                if abrev == attr: return longr
             attr = input(" -> Atributo inválido. Tente novamente: ").strip()
-    
+
+        

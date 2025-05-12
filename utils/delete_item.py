@@ -14,3 +14,5 @@ def deleteItem(item_id):
 
     with open("./data/items.json", "w") as arq:
         arq.write(json.dumps(items_json))
+    
+    return

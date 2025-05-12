@@ -5,21 +5,15 @@ def showItems():
         items_list = json.loads(arq.read())["items"]
 
     for item in items_list:
-        for k, v in item.items():
-            match k:
-                case "title":
-                    print(f" -> Título: {v}")
-                case "author":
-                    print(f" -> Autor: {v}")
-                case "year":
-                    print(f" -> Ano: {v}")
-                case "gender":
-                    print(f" -> Gênero: {v}")
-                case "quantitys":
-                    print(f" -> Quantidade: {v}")
-                case _:
-                    print(f" -> {k}: {v}")
+        print(f" -> ID: {item["id"]}")
+        print(f" -> Título: {item["title"]}")
+        print(f" -> Autor: {item["author"]}")
+        print(f" -> Ano: {item["year"]}")
+        print(f" -> Gênero: {item["gender"]}")
+        print(f" -> Quantidade: {item["quantity"]}")
+
 
         if not items_list.index(item) == len(items_list) - 1:
             print("\n---------------------------------\n")
-     
+    
+    return
